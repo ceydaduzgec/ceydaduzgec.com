@@ -1,313 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ceyda Duzgec | Cloud & Platform Engineer</title>
-  <meta name="description" content="Cloud & Platform Engineer based in Istanbul — AWS, Terraform, Kubernetes, Python.">
-
+  <title>Ceyda Duzgec — Cloud & Platform Engineer</title>
+  <meta name="description" content="Cloud & Platform Engineer — AWS, Terraform, Kubernetes, Python. Based in Istanbul.">
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="./assets/css/style.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="nav" id="nav">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">cd ~</a>
+  <!-- Custom cursor -->
+  <div class="cur" id="cur"></div>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#certifications" class="nav-link">Certs</a></li>
-        <li><a href="#talks" class="nav-link">Talks</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-logo">
+      <span>cd</span><span class="nl-tilde">~</span>
+    </a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#about"   class="nlink">About</a>
+      <a href="#work"    class="nlink">Work</a>
+      <a href="#skills"  class="nlink">Skills</a>
+      <a href="#talks"   class="nlink">Talks</a>
+      <a href="#contact" class="nlink nlink-cta">Contact</a>
+    </nav>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </header>
 
 
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <canvas id="particleCanvas"></canvas>
+  <section class="hero" id="top">
+    <div class="hero-wrap">
+
+      <div class="hero-left">
+        <div class="hero-status">
+          <span class="dot-live"></span>
+          Currently @ Coca-Cola İçecek
+        </div>
+
+        <h1 class="hero-h1">
+          <span class="rw"><b class="rt">Ceyda</b></span>
+          <span class="rw"><b class="rt lime">Duzgec</b></span>
+        </h1>
+
+        <p class="hero-role rw-sm">
+          <span class="rt-sm">Cloud &amp; Platform Engineer</span>
+        </p>
+
+        <p class="hero-desc rw-sm">
+          <span class="rt-sm">
+            Building cloud infrastructure that scales.<br>
+            AWS · Terraform · Kubernetes · Python
+          </span>
+        </p>
+
+        <div class="hero-btns rw-sm">
+          <span class="rt-sm">
+            <a href="#contact" class="btn-lime" data-mag>Say hello</a>
+            <a href="#work" class="btn-text">See my work ↓</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="photo-frame">
+          <img src="./assets/images/my-avatar.png" alt="Ceyda Duzgec">
+          <div class="photo-deco"></div>
+        </div>
+        <ul class="hero-contact-list">
+          <li><a href="https://github.com/ceydaduzgec"              target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/ceydaduzgec/"    target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="mailto:cduzgec@gmail.com">cduzgec@gmail.com ↗</a></li>
+          <li><span>Istanbul, Turkey</span></li>
+        </ul>
+      </div>
+
     </div>
 
-    <div class="hero-content">
-      <p class="hero-greeting">Hello, World! I'm</p>
-      <h1 class="hero-name">Ceyda Duzgec</h1>
-
-      <div class="hero-title-wrapper">
-        <span class="hero-prefix">$ role=</span>
-        <span class="hero-role" id="typingText"></span>
-        <span class="cursor">_</span>
-      </div>
-
-      <p class="hero-desc">
-        Cloud &amp; Platform Engineer building scalable infrastructure<br>
-        and empowering teams through DevOps practices.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-        <a href="#experience" class="btn btn-outline">View My Work</a>
-      </div>
-
-      <div class="hero-social">
-        <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="mailto:cduzgec@gmail.com" class="social-btn" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-        </a>
-      </div>
+    <div class="hero-scroll" id="heroScroll">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
     </div>
-
-    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-    </a>
   </section>
+
+
+  <!-- MARQUEE 1 -->
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track">
+      <span>CLOUD</span><span class="mq-dot">·</span>
+      <span>AWS</span><span class="mq-dot">·</span>
+      <span>TERRAFORM</span><span class="mq-dot">·</span>
+      <span>KUBERNETES</span><span class="mq-dot">·</span>
+      <span>PLATFORM ENGINEERING</span><span class="mq-dot">·</span>
+      <span>DEVOPS</span><span class="mq-dot">·</span>
+      <span>PYTHON</span><span class="mq-dot">·</span>
+      <span>CI/CD</span><span class="mq-dot">·</span>
+      <span>CLOUD</span><span class="mq-dot">·</span>
+      <span>AWS</span><span class="mq-dot">·</span>
+      <span>TERRAFORM</span><span class="mq-dot">·</span>
+      <span>KUBERNETES</span><span class="mq-dot">·</span>
+      <span>PLATFORM ENGINEERING</span><span class="mq-dot">·</span>
+      <span>DEVOPS</span><span class="mq-dot">·</span>
+      <span>PYTHON</span><span class="mq-dot">·</span>
+      <span>CI/CD</span><span class="mq-dot">·</span>
+    </div>
+  </div>
 
 
   <!-- ABOUT -->
-  <section class="section about-section" id="about">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// 01</span>
-        <h2 class="section-title">About Me</h2>
-      </div>
-
+  <section class="section" id="about">
+    <div class="wrap">
       <div class="about-grid">
-        <div class="about-image-col">
-          <div class="avatar-frame">
-            <img src="./assets/images/my-avatar.png" alt="Ceyda Duzgec">
-            <div class="avatar-decoration"></div>
+
+        <div class="about-left">
+          <p class="sec-label reveal-up">About</p>
+          <h2 class="sec-h2 reveal-up">Building systems<br>people can trust.</h2>
+        </div>
+
+        <div class="about-right">
+          <p class="about-p reveal-up">
+            I'm a <strong>Cloud &amp; Platform Engineer</strong> based in Istanbul, Turkey. I specialise in AWS cloud architecture, Infrastructure as Code with Terraform, and container orchestration with Kubernetes. Currently on the Platform team at <strong>Coca-Cola İçecek</strong>.
+          </p>
+          <p class="about-p reveal-up">
+            I hold a Master's in Software Engineering from Boğaziçi University and a Bachelor's in Computer Science from Sabancı University. Outside of infrastructure I mentor engineers and give conference talks.
+          </p>
+
+          <div class="stats reveal-up">
+            <div class="stat-item">
+              <span class="si-n">5+</span>
+              <span class="si-l">Years in tech</span>
+            </div>
+            <div class="stat-item">
+              <span class="si-n">4</span>
+              <span class="si-l">AWS certs</span>
+            </div>
+            <div class="stat-item">
+              <span class="si-n">3+</span>
+              <span class="si-l">Conf. talks</span>
+            </div>
+          </div>
+
+          <div class="pillars reveal-up">
+            <div class="pillar">
+              <span class="pillar-icon">☁️</span>
+              <div>
+                <strong>Cloud Architecture</strong>
+                <p>AWS Well-Architected, scalable and cost-efficient infrastructure.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <span class="pillar-icon">⚙️</span>
+              <div>
+                <strong>Platform Engineering</strong>
+                <p>Kubernetes, EKS, developer tooling — GitHub, Azure DevOps, ELK, New Relic.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <span class="pillar-icon">🔁</span>
+              <div>
+                <strong>DevOps &amp; IaC</strong>
+                <p>Terraform, Terragrunt, CI/CD with Jenkins, GitHub Actions, GitLab CI.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <span class="pillar-icon">🐍</span>
+              <div>
+                <strong>Backend Development</strong>
+                <p>Python microservices and REST APIs — Django, Flask, PostgreSQL.</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="about-text-col">
-          <p class="about-p">
-            I'm a <strong>Cloud &amp; Platform Engineer</strong> based in Istanbul, Turkey, with a background in backend development using Python and microservices. I hold a Bachelor's in Computer Engineering from Sabancı University and a Master's in Software Engineering from Boğaziçi University.
-          </p>
-          <p class="about-p">
-            I specialise in AWS cloud architecture, infrastructure automation with Terraform, and container orchestration with Kubernetes. Outside of work I mentor junior engineers and speak at tech conferences — sharing knowledge energises me as much as building systems does.
-          </p>
-
-          <div class="stat-row">
-            <div class="stat-item">
-              <span class="stat-num">4+</span>
-              <span class="stat-label">Years Experience</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">4</span>
-              <span class="stat-label">AWS Certifications</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">3+</span>
-              <span class="stat-label">Conference Talks</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">17%</span>
-              <span class="stat-label">AWS Cost Reduction</span>
-            </div>
-          </div>
-
-          <div class="service-cards">
-            <div class="service-card">
-              <div class="service-icon">☁️</div>
-              <h4>Cloud Architecture</h4>
-              <p>Scalable, secure AWS infrastructure guided by the Well-Architected Framework.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-icon">⚙️</div>
-              <h4>DevOps &amp; IaC</h4>
-              <p>Terraform, Terragrunt, and CI/CD pipelines for reproducible, automated environments.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-icon">🐍</div>
-              <h4>Backend Development</h4>
-              <p>Robust microservices and REST APIs with Python, Django, Flask, and PostgreSQL.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-icon">⛵</div>
-              <h4>Container Orchestration</h4>
-              <p>AWS EKS and Kubernetes cluster management ensuring production availability.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
 
-  <!-- EXPERIENCE -->
-  <section class="section experience-section" id="experience">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// 02</span>
-        <h2 class="section-title">Experience</h2>
+  <!-- MARQUEE 2 (reverse) -->
+  <div class="marquee marquee-rev" aria-hidden="true">
+    <div class="mq-track">
+      <span>SOLUTIONS ARCHITECT</span><span class="mq-dot">·</span>
+      <span>ISTANBUL</span><span class="mq-dot">·</span>
+      <span>BOĞAZIÇI UNIVERSITY</span><span class="mq-dot">·</span>
+      <span>SABANCI UNIVERSITY</span><span class="mq-dot">·</span>
+      <span>OPEN TO TALKS</span><span class="mq-dot">·</span>
+      <span>SOLUTIONS ARCHITECT</span><span class="mq-dot">·</span>
+      <span>ISTANBUL</span><span class="mq-dot">·</span>
+      <span>BOĞAZIÇI UNIVERSITY</span><span class="mq-dot">·</span>
+      <span>SABANCI UNIVERSITY</span><span class="mq-dot">·</span>
+      <span>OPEN TO TALKS</span><span class="mq-dot">·</span>
+    </div>
+  </div>
+
+
+  <!-- WORK -->
+  <section class="section section-alt" id="work">
+    <div class="wrap">
+      <div class="work-header">
+        <p class="sec-label reveal-up">Experience</p>
+        <h2 class="sec-h2 reveal-up">Where I've worked</h2>
       </div>
 
-      <div class="timeline">
+      <div class="job-list" id="jobList">
 
-        <div class="timeline-item" data-animate>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div class="tl-title-group">
-                <h3 class="tl-role">Cloud &amp; Platform Engineer</h3>
-                <span class="tl-company">Sufle</span>
+        <div class="job reveal-up">
+          <div class="job-logo-col">
+            <div class="jlogo">
+              <img src="https://logo.clearbit.com/cci.com.tr" alt="CCI"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="jlogo-init">CCI</span>
+            </div>
+          </div>
+          <div class="job-content">
+            <div class="job-head">
+              <div>
+                <h3>Solutions Architect</h3>
+                <p class="job-co">Coca-Cola İçecek (CCI)</p>
               </div>
-              <div class="tl-meta">
-                <span class="tl-date">Feb 2024 – Present</span>
-                <span class="tl-location">Istanbul, Turkey</span>
+              <div class="job-meta">
+                <span class="job-date">Nov 2025 – Present</span>
+                <span class="job-loc">Istanbul, Turkey</span>
               </div>
             </div>
-            <ul class="tl-bullets">
+            <ul class="job-bullets">
+              <li>Part of the Platform team managing developer tooling and infrastructure across the organisation</li>
+              <li>Managing GitHub, Azure DevOps, ELK Stack, New Relic, SonarQube, and Power Platform</li>
+            </ul>
+            <div class="jtags">
+              <span>GitHub</span><span>Azure DevOps</span><span>ELK</span>
+              <span>New Relic</span><span>SonarQube</span><span>Power Platform</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="job reveal-up">
+          <div class="job-logo-col">
+            <div class="jlogo">
+              <img src="https://logo.clearbit.com/sufle.net" alt="Sufle"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="jlogo-init">SFL</span>
+            </div>
+          </div>
+          <div class="job-content">
+            <div class="job-head">
+              <div>
+                <h3>Cloud &amp; Platform Engineer</h3>
+                <p class="job-co">Sufle</p>
+              </div>
+              <div class="job-meta">
+                <span class="job-date">Feb 2024 – Nov 2025</span>
+                <span class="job-loc">Istanbul, Turkey</span>
+              </div>
+            </div>
+            <ul class="job-bullets">
               <li>Established AWS Well-Architected Framework review processes and team training materials</li>
-              <li>Reduced monthly AWS costs by <strong>17%</strong> through infrastructure optimisation and resource rightsizing</li>
               <li>Managed CI/CD pipelines with Jenkins, GitHub Actions, GitLab CI, and AWS services</li>
-              <li>Implemented Terraform and Terragrunt for Infrastructure as Code, enabling reproducible environments</li>
-              <li>Performed AWS EKS and Kubernetes cluster upgrades ensuring continuous production availability</li>
+              <li>Implemented Terraform and Terragrunt for Infrastructure as Code</li>
+              <li>Performed AWS EKS and Kubernetes cluster upgrades, ensuring continuous production availability</li>
               <li>Mentored interns with technical guidance and project delegation</li>
             </ul>
-            <div class="tl-tags">
-              <span class="tl-tag">AWS</span>
-              <span class="tl-tag">Terraform</span>
-              <span class="tl-tag">Terragrunt</span>
-              <span class="tl-tag">Kubernetes</span>
-              <span class="tl-tag">EKS</span>
-              <span class="tl-tag">Jenkins</span>
-              <span class="tl-tag">GitHub Actions</span>
+            <div class="jtags">
+              <span>AWS</span><span>Terraform</span><span>Terragrunt</span>
+              <span>Kubernetes</span><span>EKS</span><span>Jenkins</span><span>GitHub Actions</span>
             </div>
           </div>
         </div>
 
-        <div class="timeline-item" data-animate>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div class="tl-title-group">
-                <h3 class="tl-role">Software Developer II</h3>
-                <span class="tl-company">SOCRadar Extended Threat Intelligence</span>
+        <div class="job reveal-up">
+          <div class="job-logo-col">
+            <div class="jlogo">
+              <img src="https://logo.clearbit.com/socradar.io" alt="SOCRadar"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="jlogo-init">SCR</span>
+            </div>
+          </div>
+          <div class="job-content">
+            <div class="job-head">
+              <div>
+                <h3>Software Developer II</h3>
+                <p class="job-co">SOCRadar Extended Threat Intelligence</p>
               </div>
-              <div class="tl-meta">
-                <span class="tl-date">Sep 2023 – Jan 2024</span>
-                <span class="tl-location">Istanbul, Turkey</span>
+              <div class="job-meta">
+                <span class="job-date">Sep 2023 – Jan 2024</span>
+                <span class="job-loc">Istanbul, Turkey</span>
               </div>
             </div>
-            <ul class="tl-bullets">
+            <ul class="job-bullets">
               <li>Implemented black, isort, flake8 linters with pre-commit hooks, establishing team-wide coding standards</li>
-              <li>Built microservices with Python, Flask, PostgreSQL, and Vue.js, focusing on REST API development</li>
+              <li>Built microservices with Python, Flask, PostgreSQL, and Vue.js</li>
             </ul>
-            <div class="tl-tags">
-              <span class="tl-tag">Python</span>
-              <span class="tl-tag">Flask</span>
-              <span class="tl-tag">PostgreSQL</span>
-              <span class="tl-tag">Vue.js</span>
-              <span class="tl-tag">REST API</span>
+            <div class="jtags">
+              <span>Python</span><span>Flask</span><span>PostgreSQL</span><span>Vue.js</span>
             </div>
           </div>
         </div>
 
-        <div class="timeline-item" data-animate>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div class="tl-title-group">
-                <h3 class="tl-role">API &amp; Infrastructure Developer</h3>
-                <span class="tl-company">Hipo &amp; Pera Wallet</span>
+        <div class="job reveal-up">
+          <div class="job-logo-col">
+            <div class="jlogo">
+              <img src="https://logo.clearbit.com/hipo.com.tr" alt="Hipo"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="jlogo-init">HİPO</span>
+            </div>
+          </div>
+          <div class="job-content">
+            <div class="job-head">
+              <div>
+                <h3>API &amp; Infrastructure Developer</h3>
+                <p class="job-co">Hipo &amp; Pera Wallet</p>
               </div>
-              <div class="tl-meta">
-                <span class="tl-date">Mar 2022 – Jun 2023</span>
-                <span class="tl-location">Remote — Canada · Portugal</span>
+              <div class="job-meta">
+                <span class="job-date">Mar 2022 – Jun 2023</span>
+                <span class="job-loc">Remote — Canada · Portugal</span>
               </div>
             </div>
-            <ul class="tl-bullets">
+            <ul class="job-bullets">
               <li>Maintained and optimised back-end systems with AWS Services, Redis, Celery, and Docker</li>
-              <li>Engineered a mock mixin for Amazon SNS, revolutionising testing by eliminating external API calls</li>
-              <li>Integrated Algofi API and Lofty.ai endpoints, expanding token compatibility</li>
+              <li>Engineered a mock mixin for Amazon SNS, eliminating external API calls in testing</li>
               <li>Spearheaded N+1 query optimisation, substantially improving database performance</li>
-              <li>Led backend development for the Events &amp; Meetups component on the Developer Portal</li>
-              <li>Implemented GDPR compliance and cookie management strategies</li>
+              <li>Implemented GDPR compliance and cookie management on the Developer Portal</li>
             </ul>
-            <div class="tl-tags">
-              <span class="tl-tag">Python</span>
-              <span class="tl-tag">Django</span>
-              <span class="tl-tag">DRF</span>
-              <span class="tl-tag">AWS</span>
-              <span class="tl-tag">Docker</span>
-              <span class="tl-tag">Redis</span>
-              <span class="tl-tag">Celery</span>
+            <div class="jtags">
+              <span>Python</span><span>Django</span><span>DRF</span>
+              <span>AWS</span><span>Docker</span><span>Redis</span><span>Celery</span>
             </div>
           </div>
         </div>
 
-        <div class="timeline-item" data-animate>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div class="tl-title-group">
-                <h3 class="tl-role">Software Engineer</h3>
-                <span class="tl-company">Yorenet Technology</span>
+        <div class="job reveal-up">
+          <div class="job-logo-col">
+            <div class="jlogo">
+              <img src="https://logo.clearbit.com/yorenet.com.tr" alt="Yorenet"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="jlogo-init">YRN</span>
+            </div>
+          </div>
+          <div class="job-content">
+            <div class="job-head">
+              <div>
+                <h3>Software Engineer &amp; IT Intern</h3>
+                <p class="job-co">Yorenet Technology</p>
               </div>
-              <div class="tl-meta">
-                <span class="tl-date">Mar 2021 – Mar 2022</span>
-                <span class="tl-location">Istanbul, Turkey</span>
+              <div class="job-meta">
+                <span class="job-date">Jun 2020 – Mar 2022</span>
+                <span class="job-loc">Istanbul, Turkey</span>
               </div>
             </div>
-            <ul class="tl-bullets">
+            <ul class="job-bullets">
               <li>Developed cloud-based applications with Outsystems using SQL, JavaScript, and CSS</li>
               <li>Provided IT Service Management consultancy with ServiceNow</li>
-              <li>Led creation and presentation of Proof of Concepts for client acquisition</li>
+              <li>Built an NLP ML model in Python to automatically categorise ServiceNow tickets</li>
             </ul>
-            <div class="tl-tags">
-              <span class="tl-tag">Outsystems</span>
-              <span class="tl-tag">ServiceNow</span>
-              <span class="tl-tag">JavaScript</span>
-              <span class="tl-tag">SQL</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item" data-animate>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div class="tl-title-group">
-                <h3 class="tl-role">IT Intern</h3>
-                <span class="tl-company">Yorenet Technology</span>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">Jun 2020 – Sep 2020</span>
-                <span class="tl-location">Istanbul, Turkey</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Developed an NLP machine learning model in Python to automatically categorise incoming tickets</li>
-              <li>Used ServiceNow inputs (description, priority) to predict subcategory, category, and impact</li>
-            </ul>
-            <div class="tl-tags">
-              <span class="tl-tag">Python</span>
-              <span class="tl-tag">NLP</span>
-              <span class="tl-tag">Machine Learning</span>
-              <span class="tl-tag">ServiceNow</span>
+            <div class="jtags">
+              <span>Outsystems</span><span>ServiceNow</span><span>Python</span><span>NLP</span>
             </div>
           </div>
         </div>
@@ -315,196 +367,150 @@
       </div>
 
       <!-- Education -->
-      <div class="section-header" style="margin-top: 5rem;">
-        <span class="section-tag">// 02b</span>
-        <h2 class="section-title">Education</h2>
+      <div class="edu-row">
+        <div class="edu-card reveal-up">
+          <span class="edu-i">🎓</span>
+          <div>
+            <strong>MSc Software Engineering</strong>
+            <p>Boğaziçi University · 2022–2023 · 3.77 GPA</p>
+          </div>
+        </div>
+        <div class="edu-card reveal-up">
+          <span class="edu-i">🌍</span>
+          <div>
+            <strong>Erasmus Exchange Program</strong>
+            <p>TU Darmstadt, Germany · 2019</p>
+          </div>
+        </div>
+        <div class="edu-card reveal-up">
+          <span class="edu-i">💻</span>
+          <div>
+            <strong>BSc Computer Science &amp; Engineering</strong>
+            <p>Sabancı University · 2016–2021 · 75% Scholarship</p>
+          </div>
+        </div>
       </div>
 
-      <div class="edu-grid">
-        <div class="edu-card" data-animate>
-          <div class="edu-icon">🎓</div>
-          <div>
-            <h3 class="edu-degree">MSc Software Engineering</h3>
-            <p class="edu-school">Boğaziçi University</p>
-            <p class="edu-detail">Istanbul, Turkey · 2022–2023 · GPA 3.77 / 4.0</p>
-          </div>
-        </div>
-        <div class="edu-card" data-animate>
-          <div class="edu-icon">🌍</div>
-          <div>
-            <h3 class="edu-degree">Erasmus Exchange Program</h3>
-            <p class="edu-school">Technical University of Darmstadt</p>
-            <p class="edu-detail">Darmstadt, Germany · Mar 2019 – Sep 2019</p>
-          </div>
-        </div>
-        <div class="edu-card" data-animate>
-          <div class="edu-icon">💻</div>
-          <div>
-            <h3 class="edu-degree">BSc Computer Science &amp; Engineering</h3>
-            <p class="edu-school">Sabancı University</p>
-            <p class="edu-detail">Istanbul, Turkey · 2016–2021 · GPA 3.0 / 4.0 · 75% Scholarship</p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
 
   <!-- SKILLS -->
-  <section class="section skills-section" id="skills">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// 03</span>
-        <h2 class="section-title">Skills &amp; Technologies</h2>
-      </div>
+  <section class="section" id="skills">
+    <div class="wrap">
+      <p class="sec-label reveal-up">Skills</p>
+      <h2 class="sec-h2 reveal-up">What I work with</h2>
 
       <div class="skills-grid">
-        <div class="skill-cat" data-animate>
-          <h3 class="skill-cat-title"><span>☁️</span> Cloud &amp; Infrastructure</h3>
-          <div class="skill-chips">
-            <span class="chip">AWS (EC2, S3, EKS, Lambda, RDS)</span>
-            <span class="chip">Well-Architected Framework</span>
-            <span class="chip">Terraform</span>
-            <span class="chip">Terragrunt</span>
-            <span class="chip">Infrastructure as Code</span>
+
+        <div class="sk-cell sk-large reveal-up">
+          <h3>☁️ Cloud &amp; Infrastructure</h3>
+          <div class="sk-chips">
+            <span>AWS EC2</span><span>S3</span><span>EKS</span><span>Lambda</span>
+            <span>RDS</span><span>IAM</span><span>CloudFormation</span>
+            <span>Well-Architected</span><span>Terraform</span><span>Terragrunt</span>
           </div>
         </div>
 
-        <div class="skill-cat" data-animate>
-          <h3 class="skill-cat-title"><span>⚙️</span> DevOps &amp; CI/CD</h3>
-          <div class="skill-chips">
-            <span class="chip">Kubernetes</span>
-            <span class="chip">Docker</span>
-            <span class="chip">Jenkins</span>
-            <span class="chip">GitHub Actions</span>
-            <span class="chip">GitLab CI</span>
-            <span class="chip">CircleCI</span>
+        <div class="sk-cell reveal-up">
+          <h3>⚙️ DevOps &amp; CI/CD</h3>
+          <div class="sk-chips">
+            <span>Kubernetes</span><span>Docker</span><span>Jenkins</span>
+            <span>GitHub Actions</span><span>GitLab CI</span><span>CircleCI</span>
+            <span>Azure DevOps</span>
           </div>
         </div>
 
-        <div class="skill-cat" data-animate>
-          <h3 class="skill-cat-title"><span>🐍</span> Backend Development</h3>
-          <div class="skill-chips">
-            <span class="chip">Python</span>
-            <span class="chip">Django</span>
-            <span class="chip">Django REST Framework</span>
-            <span class="chip">Flask</span>
-            <span class="chip">PostgreSQL</span>
-            <span class="chip">Redis</span>
-            <span class="chip">Celery</span>
+        <div class="sk-cell reveal-up">
+          <h3>📊 Observability</h3>
+          <div class="sk-chips">
+            <span>ELK Stack</span><span>New Relic</span>
+            <span>SonarQube</span><span>Sentry</span>
           </div>
         </div>
 
-        <div class="skill-cat" data-animate>
-          <h3 class="skill-cat-title"><span>🔧</span> Tools &amp; Other</h3>
-          <div class="skill-chips">
-            <span class="chip">Git</span>
-            <span class="chip">Sentry</span>
-            <span class="chip">ServiceNow</span>
-            <span class="chip">Vue.js</span>
-            <span class="chip">Swagger</span>
-            <span class="chip">NLP / ML (Python)</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CERTIFICATIONS -->
-  <section class="section certs-section" id="certifications">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// 04</span>
-        <h2 class="section-title">Certifications</h2>
-      </div>
-
-      <div class="certs-grid">
-        <div class="cert-card" data-animate>
-          <div class="cert-badge aws">AWS</div>
-          <div class="cert-info">
-            <h3>AWS Certified Solutions Architect – Associate</h3>
-            <p>Amazon Web Services, Inc</p>
-            <span class="cert-date">Jun 2025</span>
+        <div class="sk-cell reveal-up">
+          <h3>🐍 Backend</h3>
+          <div class="sk-chips">
+            <span>Python</span><span>Django</span><span>DRF</span>
+            <span>Flask</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span>
           </div>
         </div>
 
-        <div class="cert-card" data-animate>
-          <div class="cert-badge aws">AWS</div>
-          <div class="cert-info">
-            <h3>AWS Certified AI Practitioner</h3>
-            <p>Amazon Web Services, Inc</p>
-            <span class="cert-date">Nov 2024</span>
+        <!-- Certifications baked in -->
+        <div class="sk-cell sk-certs reveal-up">
+          <h3>Certifications</h3>
+          <div class="cert-rows">
+            <div class="cert-entry">
+              <span class="cbadge aws">AWS</span>
+              <span>Solutions Architect – Associate <em>Jun 2025</em></span>
+            </div>
+            <div class="cert-entry">
+              <span class="cbadge aws">AWS</span>
+              <span>AI Practitioner <em>Nov 2024</em></span>
+            </div>
+            <div class="cert-entry">
+              <span class="cbadge tf">TF</span>
+              <span>Terraform Associate <em>Sep 2024</em></span>
+            </div>
+            <div class="cert-entry">
+              <span class="cbadge aws">AWS</span>
+              <span>Cloud Practitioner <em>Aug 2024</em></span>
+            </div>
           </div>
         </div>
 
-        <div class="cert-card" data-animate>
-          <div class="cert-badge tf">TF</div>
-          <div class="cert-info">
-            <h3>HashiCorp Terraform Associate</h3>
-            <p>HashiCorp, Inc</p>
-            <span class="cert-date">Sep 2024</span>
-          </div>
-        </div>
-
-        <div class="cert-card" data-animate>
-          <div class="cert-badge aws">AWS</div>
-          <div class="cert-info">
-            <h3>AWS Certified Cloud Practitioner</h3>
-            <p>Amazon Web Services, Inc</p>
-            <span class="cert-date">Aug 2024</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
 
   <!-- TALKS -->
-  <section class="section talks-section" id="talks">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// 05</span>
-        <h2 class="section-title">Public Speaking</h2>
-      </div>
+  <section class="section section-alt" id="talks">
+    <div class="wrap">
+      <p class="sec-label reveal-up">Speaking</p>
+      <h2 class="sec-h2 reveal-up">Conference talks</h2>
 
-      <div class="talks-list">
+      <div class="talks">
 
-        <div class="talk-card" data-animate>
-          <span class="talk-num">01</span>
+        <a class="talk reveal-up" href="#">
+          <span class="talk-n">01</span>
           <div class="talk-body">
-            <div class="talk-meta">
-              <span class="talk-event">Enstitü Istanbul Ismek</span>
-              <span class="talk-date">Dec 2024</span>
+            <div class="talk-top">
+              <span class="talk-ev">Enstitü Istanbul Ismek</span>
+              <span class="talk-yr">Dec 2024</span>
             </div>
-            <h3 class="talk-title">AWS Üzerinde Üretken Yapay Zekanın Eğitim Alanında Uygulamaları</h3>
-            <p class="talk-sub">Yapay Zeka ve Yetişkin Eğitiminin Geleceği</p>
+            <h3>AWS Üzerinde Üretken Yapay Zekanın<br>Eğitim Alanında Uygulamaları</h3>
+            <p>Yapay Zeka ve Yetişkin Eğitiminin Geleceği</p>
           </div>
-        </div>
+          <span class="talk-arrow">↗</span>
+        </a>
 
-        <div class="talk-card" data-animate>
-          <span class="talk-num">02</span>
+        <a class="talk reveal-up" href="#">
+          <span class="talk-n">02</span>
           <div class="talk-body">
-            <div class="talk-meta">
-              <span class="talk-event">Izmir Devfest</span>
-              <span class="talk-date">Dec 2024</span>
+            <div class="talk-top">
+              <span class="talk-ev">Izmir Devfest</span>
+              <span class="talk-yr">Dec 2024</span>
             </div>
-            <h3 class="talk-title">Transfer Your Existing Infrastructure to Terraform</h3>
-            <p class="talk-sub">Practical guide to migrating real-world infrastructure to Infrastructure as Code</p>
+            <h3>Transfer Your Existing<br>Infrastructure to Terraform</h3>
+            <p>Migrating real-world infrastructure to Infrastructure as Code</p>
           </div>
-        </div>
+          <span class="talk-arrow">↗</span>
+        </a>
 
-        <div class="talk-card" data-animate>
-          <span class="talk-num">03</span>
+        <a class="talk reveal-up" href="#">
+          <span class="talk-n">03</span>
           <div class="talk-body">
-            <div class="talk-meta">
-              <span class="talk-event">Diva AI</span>
-              <span class="talk-date">Jul 2024</span>
+            <div class="talk-top">
+              <span class="talk-ev">Diva AI</span>
+              <span class="talk-yr">Jul 2024</span>
             </div>
-            <h3 class="talk-title">Kubernetes and AI</h3>
-            <p class="talk-sub">Exploring the intersection of container orchestration and AI workloads</p>
+            <h3>Kubernetes and AI</h3>
+            <p>Container orchestration meets artificial intelligence workloads</p>
           </div>
-        </div>
+          <span class="talk-arrow">↗</span>
+        </a>
 
       </div>
     </div>
@@ -512,45 +518,28 @@
 
 
   <!-- CONTACT -->
-  <section class="section contact-section" id="contact">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// 06</span>
-        <h2 class="section-title">Get In Touch</h2>
-      </div>
-
-      <div class="contact-grid">
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-wrap">
         <div class="contact-left">
-          <p class="contact-desc">
-            Whether you want to discuss cloud architecture, collaborate on a project, or just say hi — my inbox is always open.
+          <p class="sec-label reveal-up">Contact</p>
+          <h2 class="sec-h2 reveal-up">Let's build<br>something great.</h2>
+          <p class="contact-p reveal-up">
+            Open to conversations about cloud architecture, platform engineering, and interesting problems. Drop me a line.
           </p>
-          <div class="contact-items">
-            <a href="mailto:cduzgec@gmail.com" class="contact-item">
-              <span class="contact-item-icon">✉️</span>
-              <span>cduzgec@gmail.com</span>
-            </a>
-            <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener" class="contact-item">
-              <span class="contact-item-icon">💼</span>
-              <span>linkedin.com/in/ceydaduzgec</span>
-            </a>
-            <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener" class="contact-item">
-              <span class="contact-item-icon">🐱</span>
-              <span>github.com/ceydaduzgec</span>
-            </a>
-            <div class="contact-item">
-              <span class="contact-item-icon">📍</span>
-              <span>Istanbul, Turkey</span>
-            </div>
+          <div class="contact-links reveal-up">
+            <a href="mailto:cduzgec@gmail.com">✉ cduzgec@gmail.com</a>
+            <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener">in linkedin.com/in/ceydaduzgec</a>
+            <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener">⌥ github.com/ceydaduzgec</a>
           </div>
         </div>
-
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/placeholder" method="POST">
-          <div class="form-row">
-            <input type="text" name="name" placeholder="Your Name" required class="f-input">
-            <input type="email" name="email" placeholder="Your Email" required class="f-input">
+        <form class="cform reveal-up" id="contactForm">
+          <div class="cf-row">
+            <input  type="text"  name="name"    placeholder="Your name"  required class="cf-inp">
+            <input  type="email" name="email"   placeholder="Your email" required class="cf-inp">
           </div>
-          <textarea name="message" placeholder="Your Message" rows="5" required class="f-input"></textarea>
-          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          <textarea name="message" placeholder="Your message" rows="5" required class="cf-inp"></textarea>
+          <button type="submit" class="btn-lime btn-full" data-mag>Send message</button>
         </form>
       </div>
     </div>
@@ -559,14 +548,17 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <p>Designed &amp; Built by <strong>Ceyda Duzgec</strong></p>
-      <p class="footer-mono">Istanbul · 2025</p>
+    <div class="wrap footer-inner">
+      <span class="footer-name">Ceyda Duzgec</span>
+      <span class="footer-loc">Istanbul · <span id="yr"></span></span>
+      <div class="footer-links">
+        <a href="https://github.com/ceydaduzgec"           target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
 
   <script src="./assets/js/script.js"></script>
-
 </body>
 </html>

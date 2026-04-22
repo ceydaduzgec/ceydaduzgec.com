@@ -1,169 +1,94 @@
 'use strict';
 
-/* ============================================================
-   NAV — scroll effect + active link + mobile toggle
-   ============================================================ */
-const nav         = document.getElementById('nav');
-const navLinks    = document.querySelectorAll('.nav-link');
-const navLinksEl  = document.getElementById('navLinks');
-const navToggle   = document.getElementById('navToggle');
-const sections    = document.querySelectorAll('section[id]');
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── Custom Cursor ─────────────────────────────────────── */
+const cur = document.getElementById('cur');
+let mx = 0, my = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top  = my + 'px';
+  cur.classList.remove('hidden');
+});
+document.addEventListener('mouseleave', () => cur.classList.add('hidden'));
+
+/* Grow cursor on interactive elements */
+document.querySelectorAll('a, button, [data-mag], .job, .talk').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+
+
+/* ── Navigation ────────────────────────────────────────── */
+const nav      = document.getElementById('nav');
+const navMenu  = document.getElementById('navMenu');
+const burger   = document.getElementById('burger');
+const nlinks   = document.querySelectorAll('.nlink');
+const secs     = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
+  nav.classList.toggle('scrolled', window.scrollY > 30);
 
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
-  });
-  navLinks.forEach(l => {
-    l.classList.toggle('active', l.getAttribute('href') === `#${current}`);
-  });
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  nlinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${cur}`));
 }, { passive: true });
 
-navToggle.addEventListener('click', () => {
-  navLinksEl.classList.toggle('open');
+burger.addEventListener('click', () => {
+  const open = navMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
 });
-navLinks.forEach(l => l.addEventListener('click', () => navLinksEl.classList.remove('open')));
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navMenu.classList.remove('open');
+  burger.classList.remove('open');
+}));
 
 
-/* ============================================================
-   TYPING ANIMATION
-   ============================================================ */
-const titles = [
-  'Cloud & Platform Engineer',
-  'AWS Solutions Architect',
-  'Terraform Practitioner',
-  'DevOps Enthusiast',
-  'Python Developer',
-];
-
-let titleIdx = 0;
-let charIdx  = 0;
-let deleting = false;
-const typingEl = document.getElementById('typingText');
-
-function tick() {
-  const word = titles[titleIdx];
-
-  if (deleting) {
-    typingEl.textContent = word.slice(0, --charIdx);
-  } else {
-    typingEl.textContent = word.slice(0, ++charIdx);
-  }
-
-  if (!deleting && charIdx === word.length) {
-    setTimeout(() => { deleting = true; tick(); }, 2200);
-    return;
-  }
-  if (deleting && charIdx === 0) {
-    deleting  = false;
-    titleIdx  = (titleIdx + 1) % titles.length;
-  }
-
-  setTimeout(tick, deleting ? 45 : 80);
-}
-
-setTimeout(tick, 1600);
-
-
-/* ============================================================
-   SCROLL-TRIGGERED ANIMATIONS (Intersection Observer)
-   ============================================================ */
-const animateTargets = document.querySelectorAll(
-  '.timeline-item, .edu-card, .skill-cat, .cert-card, .talk-card'
-);
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      /* Stagger siblings within the same parent */
-      const siblings = [...entry.target.parentElement.children].filter(
-        el => el.hasAttribute('data-animate') || animateTargets.item
-      );
-      const idx = siblings.indexOf(entry.target);
-      setTimeout(() => entry.target.classList.add('visible'), idx * 80);
-      observer.unobserve(entry.target);
-    }
+/* ── Hero Text Reveal ──────────────────────────────────── */
+/* Stagger the big name lines */
+function triggerHeroReveal() {
+  const delay = [0, 120, 260, 380, 500];
+  document.querySelectorAll('.rt').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), delay[i] ?? i * 120);
   });
-}, { threshold: 0.12 });
-
-animateTargets.forEach(el => observer.observe(el));
-
-
-/* ============================================================
-   PARTICLE CANVAS
-   ============================================================ */
-const canvas = document.getElementById('particleCanvas');
-const ctx    = canvas.getContext('2d');
-let pts      = [];
-
-function resize() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
+  document.querySelectorAll('.rt-sm').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 300 + i * 100);
+  });
 }
+window.addEventListener('load', triggerHeroReveal);
 
-class Pt {
-  constructor() { this.init(); }
-  init() {
-    this.x  = Math.random() * canvas.width;
-    this.y  = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.r  = Math.random() * 1.4 + 0.4;
-    this.a  = Math.random() * 0.45 + 0.08;
-  }
-  step() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > canvas.width)  this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height)  this.vy *= -1;
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(0,212,255,${this.a})`;
-    ctx.fill();
-  }
+
+/* ── Scroll Reveal ─────────────────────────────────────── */
+const revealEls = document.querySelectorAll('.reveal-up, .job, .edu-card, .sk-cell, .talk');
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const parent   = entry.target.closest('.job-list, .edu-row, .skills-grid, .talks, .pillars');
+    const siblings = parent
+      ? [...parent.querySelectorAll(':scope > .job, :scope > .edu-card, :scope > .sk-cell, :scope > .talk')]
+      : [];
+    const idx = siblings.indexOf(entry.target);
+    const delay = idx >= 0 ? idx * 60 : 0;
+
+    setTimeout(() => {
+      entry.target.classList.add('in');
+      entry.target.style.transitionDelay = '0s'; /* reset after stagger */
+    }, delay);
+
+    io.unobserve(entry.target);
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => io.observe(el));
+
+
+/* ── Scroll indicator fade ─────────────────────────────── */
+const heroScroll = document.getElementById('heroScroll');
+if (heroScroll) {
+  window.addEventListener('scroll', () => {
+    heroScroll.style.opacity = window.scrollY > 80 ? '0' : '1';
+  }, { passive: true });
 }
-
-function initPts() {
-  pts = [];
-  const n = Math.min(90, Math.floor((canvas.width * canvas.height) / 9500));
-  for (let i = 0; i < n; i++) pts.push(new Pt());
-}
-
-function drawLines() {
-  for (let i = 0; i < pts.length; i++) {
-    for (let j = i + 1; j < pts.length; j++) {
-      const dx = pts[i].x - pts[j].x;
-      const dy = pts[i].y - pts[j].y;
-      const d  = Math.hypot(dx, dy);
-      if (d < 115) {
-        ctx.beginPath();
-        ctx.moveTo(pts[i].x, pts[i].y);
-        ctx.lineTo(pts[j].x, pts[j].y);
-        ctx.strokeStyle = `rgba(0,212,255,${0.07 * (1 - d / 115)})`;
-        ctx.lineWidth   = 0.6;
-        ctx.stroke();
-      }
-    }
-  }
-}
-
-function frame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawLines();
-  pts.forEach(p => { p.step(); p.draw(); });
-  requestAnimationFrame(frame);
-}
-
-resize();
-initPts();
-frame();
-
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => { resize(); initPts(); }, 150);
-}, { passive: true });
