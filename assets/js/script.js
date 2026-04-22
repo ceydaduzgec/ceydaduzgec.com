@@ -1,159 +1,169 @@
 'use strict';
 
+/* ============================================================
+   NAV — scroll effect + active link + mobile toggle
+   ============================================================ */
+const nav         = document.getElementById('nav');
+const navLinks    = document.querySelectorAll('.nav-link');
+const navLinksEl  = document.getElementById('navLinks');
+const navToggle   = document.getElementById('navToggle');
+const sections    = document.querySelectorAll('section[id]');
 
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
 
-// element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
-
-
-// sidebar variables
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
-
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
-
-
-
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-
-// modal variable
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-// modal toggle function
-const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
-
-// add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-
-  testimonialsItem[i].addEventListener("click", function () {
-
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
-
-    testimonialsModalFunc();
-
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
   });
-
-}
-
-// add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
-
-
-
-// custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
-
-select.addEventListener("click", function () { elementToggleFunc(this); });
-
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === `#${current}`);
   });
-}
+}, { passive: true });
 
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
+navToggle.addEventListener('click', () => {
+  navLinksEl.classList.toggle('open');
+});
+navLinks.forEach(l => l.addEventListener('click', () => navLinksEl.classList.remove('open')));
 
-const filterFunc = function (selectedValue) {
 
-  for (let i = 0; i < filterItems.length; i++) {
+/* ============================================================
+   TYPING ANIMATION
+   ============================================================ */
+const titles = [
+  'Cloud & Platform Engineer',
+  'AWS Solutions Architect',
+  'Terraform Practitioner',
+  'DevOps Enthusiast',
+  'Python Developer',
+];
 
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
+let titleIdx = 0;
+let charIdx  = 0;
+let deleting = false;
+const typingEl = document.getElementById('typingText');
 
+function tick() {
+  const word = titles[titleIdx];
+
+  if (deleting) {
+    typingEl.textContent = word.slice(0, --charIdx);
+  } else {
+    typingEl.textContent = word.slice(0, ++charIdx);
   }
 
+  if (!deleting && charIdx === word.length) {
+    setTimeout(() => { deleting = true; tick(); }, 2200);
+    return;
+  }
+  if (deleting && charIdx === 0) {
+    deleting  = false;
+    titleIdx  = (titleIdx + 1) % titles.length;
+  }
+
+  setTimeout(tick, deleting ? 45 : 80);
 }
 
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
-
-for (let i = 0; i < filterBtn.length; i++) {
-
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
-  });
-
-}
+setTimeout(tick, 1600);
 
 
+/* ============================================================
+   SCROLL-TRIGGERED ANIMATIONS (Intersection Observer)
+   ============================================================ */
+const animateTargets = document.querySelectorAll(
+  '.timeline-item, .edu-card, .skill-cat, .cert-card, .talk-card'
+);
 
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      /* Stagger siblings within the same parent */
+      const siblings = [...entry.target.parentElement.children].filter(
+        el => el.hasAttribute('data-animate') || animateTargets.item
+      );
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+      observer.unobserve(entry.target);
     }
-
   });
+}, { threshold: 0.12 });
+
+animateTargets.forEach(el => observer.observe(el));
+
+
+/* ============================================================
+   PARTICLE CANVAS
+   ============================================================ */
+const canvas = document.getElementById('particleCanvas');
+const ctx    = canvas.getContext('2d');
+let pts      = [];
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 
+class Pt {
+  constructor() { this.init(); }
+  init() {
+    this.x  = Math.random() * canvas.width;
+    this.y  = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.35;
+    this.vy = (Math.random() - 0.5) * 0.35;
+    this.r  = Math.random() * 1.4 + 0.4;
+    this.a  = Math.random() * 0.45 + 0.08;
+  }
+  step() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width)  this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height)  this.vy *= -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,212,255,${this.a})`;
+    ctx.fill();
+  }
+}
 
+function initPts() {
+  pts = [];
+  const n = Math.min(90, Math.floor((canvas.width * canvas.height) / 9500));
+  for (let i = 0; i < n; i++) pts.push(new Pt());
+}
 
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+function drawLines() {
+  for (let i = 0; i < pts.length; i++) {
+    for (let j = i + 1; j < pts.length; j++) {
+      const dx = pts[i].x - pts[j].x;
+      const dy = pts[i].y - pts[j].y;
+      const d  = Math.hypot(dx, dy);
+      if (d < 115) {
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.strokeStyle = `rgba(0,212,255,${0.07 * (1 - d / 115)})`;
+        ctx.lineWidth   = 0.6;
+        ctx.stroke();
       }
     }
-
-  });
+  }
 }
+
+function frame() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawLines();
+  pts.forEach(p => { p.step(); p.draw(); });
+  requestAnimationFrame(frame);
+}
+
+resize();
+initPts();
+frame();
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { resize(); initPts(); }, 150);
+}, { passive: true });
