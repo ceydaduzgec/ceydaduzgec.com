@@ -1,6 +1,11 @@
 'use strict';
 
-document.getElementById('yr').textContent = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
+document.getElementById('yr').textContent = currentYear;
+
+/* Career start 2020 — auto-updates each year */
+const yearsEl = document.getElementById('statYears');
+if (yearsEl) yearsEl.textContent = (currentYear - 2020) + '+';
 
 /* ── Custom Cursor ─────────────────────────────────────── */
 const cur = document.getElementById('cur');
@@ -107,14 +112,18 @@ function attachCursorHover(els) {
 
 
 /* ── Certifications — Credly ───────────────────────────────
-   Fetches public badges from Credly's JSON endpoint.
+   Credly blocks direct browser fetches (no CORS headers),
+   so we route through allorigins.win as a CORS proxy.
    ─────────────────────────────────────────────────────── */
 async function loadCerts() {
   const grid = document.getElementById('certsGrid');
   if (!grid) return;
 
+  const credlyUrl = 'https://www.credly.com/users/ceyda-duzgec.02/badges.json';
+  const proxyUrl  = `https://api.allorigins.win/raw?url=${encodeURIComponent(credlyUrl)}`;
+
   try {
-    const res  = await fetch('https://www.credly.com/users/ceyda-duzgec.02/badges.json');
+    const res  = await fetch(proxyUrl);
     const data = await res.json();
 
     const badges = (data.data || []).filter(b => b.public && b.state === 'accepted');
@@ -131,6 +140,9 @@ async function loadCerts() {
       io.observe(el);
     });
     attachCursorHover(grid.querySelectorAll('.cert-card'));
+
+    const el = document.getElementById('statCerts');
+    if (el) el.textContent = badges.length;
 
   } catch {
     grid.innerHTML = '<div class="blog-empty">Could not load certifications. <a href="https://www.credly.com/users/ceyda-duzgec.02/badges" target="_blank" rel="noopener" style="color:var(--lime)">View on Credly ↗</a></div>';
@@ -190,6 +202,9 @@ async function loadTalks() {
       io.observe(el);
     });
     attachCursorHover(container.querySelectorAll('.talk'));
+
+    const el = document.getElementById('statTalks');
+    if (el) el.textContent = talks.length;
 
   } catch {
     container.innerHTML = '<div class="talks-empty">Could not load talks.</div>';
