@@ -43,10 +43,14 @@ function initTheme() {
 
 tpBtn.addEventListener('click', e => {
   e.stopPropagation();
-  themePicker.classList.toggle('open');
+  const open = themePicker.classList.toggle('open');
+  tpBtn.setAttribute('aria-expanded', open);
 });
 
-document.addEventListener('click', () => themePicker.classList.remove('open'));
+document.addEventListener('click', () => {
+  themePicker.classList.remove('open');
+  tpBtn.setAttribute('aria-expanded', 'false');
+});
 
 tpMenu.querySelectorAll('.tp-opt').forEach(opt => {
   opt.addEventListener('click', e => {
@@ -55,6 +59,7 @@ tpMenu.querySelectorAll('.tp-opt').forEach(opt => {
     applyTheme(val);
     updatePicker(val);
     themePicker.classList.remove('open');
+    tpBtn.setAttribute('aria-expanded', 'false');
   });
 });
 
@@ -100,10 +105,12 @@ window.addEventListener('scroll', () => {
 burger.addEventListener('click', () => {
   const open = navMenu.classList.toggle('open');
   burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
 });
 navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   navMenu.classList.remove('open');
   burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
 }));
 
 

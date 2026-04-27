@@ -50,7 +50,9 @@
 </head>
 <body>
 
-  <div class="cur" id="cur"></div>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <div class="cur" id="cur" aria-hidden="true"></div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -70,7 +72,7 @@
       </nav>
       <div class="nav-controls">
         <div class="theme-picker" id="themePicker">
-          <button class="tp-btn" id="tpBtn" aria-haspopup="listbox" aria-label="Theme">
+          <button class="tp-btn" id="tpBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Theme">
             <span class="tp-icon">◐</span>
             <span class="tp-label" id="tpLabel">Dark</span>
             <svg class="tp-chevron" viewBox="0 0 10 6" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -85,7 +87,7 @@
           </ul>
         </div>
       </div>
-      <button class="nav-burger" id="burger" aria-label="Menu">
+      <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navMenu">
         <span></span><span></span>
       </button>
     </div>
@@ -97,7 +99,7 @@
     <div class="hero-wrap">
       <div class="hero-left">
         <div class="hero-status">
-          <span class="dot-live"></span>
+          <span class="dot-live" aria-hidden="true"></span>
           Currently @ Coca-Cola İçecek
         </div>
         <h1 class="hero-h1">
@@ -129,7 +131,7 @@
         </ul>
       </div>
     </div>
-    <div class="hero-scroll" id="heroScroll">
+    <div class="hero-scroll" id="heroScroll" aria-hidden="true">
       <span>scroll</span><div class="scroll-line"></div>
     </div>
   </section>
@@ -189,28 +191,28 @@
           </div>
           <div class="pillars reveal-up">
             <div class="pillar">
-              <span class="pillar-icon">☁️</span>
+              <span class="pillar-icon" aria-hidden="true">☁️</span>
               <div>
                 <strong>Cloud Architecture</strong>
                 <p>AWS Well-Architected, scalable and cost-efficient infrastructure.</p>
               </div>
             </div>
             <div class="pillar">
-              <span class="pillar-icon">⚙️</span>
+              <span class="pillar-icon" aria-hidden="true">⚙️</span>
               <div>
                 <strong>Platform Engineering</strong>
                 <p>Kubernetes, EKS, developer tooling: GitHub, Azure DevOps, ELK, New Relic.</p>
               </div>
             </div>
             <div class="pillar">
-              <span class="pillar-icon">🔁</span>
+              <span class="pillar-icon" aria-hidden="true">🔁</span>
               <div>
                 <strong>DevOps &amp; IaC</strong>
                 <p>Terraform, Terragrunt, and CI/CD pipelines for reproducible environments.</p>
               </div>
             </div>
             <div class="pillar">
-              <span class="pillar-icon">🐍</span>
+              <span class="pillar-icon" aria-hidden="true">🐍</span>
               <div>
                 <strong>Backend Development</strong>
                 <p>Python microservices and REST APIs: Django, Flask, PostgreSQL.</p>
@@ -452,7 +454,7 @@
       <h2 class="sec-h2 reveal-up">What I work with</h2>
       <div class="skills-grid">
         <div class="sk-cell sk-large reveal-up">
-          <h3>☁️ Cloud &amp; Infrastructure</h3>
+          <h3><span aria-hidden="true">☁️</span> Cloud &amp; Infrastructure</h3>
           <div class="sk-chips">
             <span>AWS EC2</span><span>S3</span><span>EKS</span><span>Lambda</span>
             <span>RDS</span><span>IAM</span><span>CloudFormation</span>
@@ -460,7 +462,7 @@
           </div>
         </div>
         <div class="sk-cell reveal-up">
-          <h3>⚙️ DevOps &amp; CI/CD</h3>
+          <h3><span aria-hidden="true">⚙️</span> DevOps &amp; CI/CD</h3>
           <div class="sk-chips">
             <span>Kubernetes</span><span>Docker</span><span>Jenkins</span>
             <span>GitHub Actions</span><span>GitLab CI</span><span>CircleCI</span>
@@ -468,14 +470,14 @@
           </div>
         </div>
         <div class="sk-cell reveal-up">
-          <h3>📊 Observability</h3>
+          <h3><span aria-hidden="true">📊</span> Observability</h3>
           <div class="sk-chips">
             <span>ELK Stack</span><span>New Relic</span>
             <span>SonarQube</span><span>Sentry</span>
           </div>
         </div>
         <div class="sk-cell sk-last reveal-up">
-          <h3>🐍 Backend</h3>
+          <h3><span aria-hidden="true">🐍</span> Backend</h3>
           <div class="sk-chips">
             <span>Python</span><span>Django</span><span>DRF</span>
             <span>Flask</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span>
@@ -498,7 +500,7 @@
           View on Credly ↗
         </a>
       </div>
-      <div class="certs-grid" id="certsGrid">
+      <div class="certs-grid" id="certsGrid" aria-live="polite" aria-label="Certifications">
         <div class="certs-loading">
           <div class="blog-spinner"></div>
           <span>Loading certifications…</span>
@@ -520,7 +522,7 @@
           All talks ↗
         </a>
       </div>
-      <div class="talks" id="talksContainer">
+      <div class="talks" id="talksContainer" aria-live="polite" aria-label="Conference talks">
         <div class="talks-loading">
           <div class="blog-spinner"></div>
           <span>Loading talks…</span>
@@ -542,7 +544,7 @@
           All posts ↗
         </a>
       </div>
-      <div class="blog-grid" id="blogGrid">
+      <div class="blog-grid" id="blogGrid" aria-live="polite" aria-label="Blog posts">
         <div class="blog-loading">
           <div class="blog-spinner"></div>
           <span>Loading posts…</span>
@@ -563,17 +565,20 @@
             Open to conversations about cloud architecture, platform engineering, and interesting problems. Drop me a line.
           </p>
           <div class="contact-links reveal-up">
-            <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener">in ceydaduzgec</a>
-            <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener"><img src="./assets/images/github.svg" alt="GitHub" class="link-icon"> ceydaduzgec</a>
-            <a href="mailto:cduzgec@gmail.com">✉ cduzgec@gmail.com</a>
+            <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener" aria-label="LinkedIn - ceydaduzgec">in ceydaduzgec</a>
+            <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener"><img src="./assets/images/github.svg" alt="" class="link-icon"> ceydaduzgec</a>
+            <a href="mailto:cduzgec@gmail.com"><span aria-hidden="true">✉</span> cduzgec@gmail.com</a>
           </div>
         </div>
         <form class="cform reveal-up" id="contactForm">
           <div class="cf-row">
-            <input type="text"  name="name"    placeholder="Your name"  required class="cf-inp">
-            <input type="email" name="email"   placeholder="Your email" required class="cf-inp">
+            <label for="cf-name" class="sr-only">Your name</label>
+            <input type="text"  id="cf-name"  name="name"    placeholder="Your name"  required class="cf-inp" autocomplete="name">
+            <label for="cf-email" class="sr-only">Your email</label>
+            <input type="email" id="cf-email" name="email"   placeholder="Your email" required class="cf-inp" autocomplete="email">
           </div>
-          <textarea name="message" placeholder="Your message" rows="5" required class="cf-inp"></textarea>
+          <label for="cf-message" class="sr-only">Your message</label>
+          <textarea id="cf-message" name="message" placeholder="Your message" rows="5" required class="cf-inp"></textarea>
           <button type="submit" class="btn-lime btn-full" data-mag>Send message</button>
         </form>
       </div>
