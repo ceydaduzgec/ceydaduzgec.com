@@ -3,7 +3,7 @@
 const currentYear = new Date().getFullYear();
 document.getElementById('yr').textContent = currentYear;
 
-/* Career start 2020 — auto-updates each year */
+/* Career start 2020, auto-updates each year */
 const yearsEl = document.getElementById('statYears');
 if (yearsEl) yearsEl.textContent = (currentYear - 2020) + '+';
 
@@ -188,7 +188,7 @@ function buildCertCard(cert) {
 loadCerts();
 
 
-/* ── Talks — GitHub Presentations README ───────────────────
+/* ── Talks - GitHub Presentations README ───────────────────
    Parses ceydaduzgec/presentations README.md to build
    the talks list automatically.
    ─────────────────────────────────────────────────────── */
@@ -309,7 +309,7 @@ async function loadBlog() {
     const data = await res.json();
 
     if (!data.items || data.items.length === 0) {
-      grid.innerHTML = `<div class="blog-empty">No posts yet — check back soon.</div>`;
+      grid.innerHTML = `<div class="blog-empty">No posts yet. Check back soon.</div>`;
       return;
     }
 
@@ -360,7 +360,7 @@ function buildBlogCard(post) {
 loadBlog();
 
 
-/* ── Contact Form — mailto ─────────────────────────────── */
+/* ── Contact Form - mailto ─────────────────────────────── */
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
