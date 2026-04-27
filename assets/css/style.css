@@ -1102,8 +1102,17 @@ button { font-family: var(--body); cursor: none; }
   transition: color var(--t);
   padding: 0.55rem 0;
   border-bottom: 1px solid var(--border);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .contact-links a:hover { color: var(--lime); }
+
+.link-icon {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
 
 .cform { display: flex; flex-direction: column; gap: 0.875rem; }
 .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
@@ -1211,12 +1220,10 @@ button { font-family: var(--body); cursor: none; }
 }
 
 @media (max-width: 480px) {
-  .cert-card { flex-direction: column; align-items: flex-start; }
-}
-
-@media (max-width: 480px) {
-  .stats { flex-wrap: wrap; gap: 1.5rem; }
-  .talk  { flex-direction: column; gap: 0.75rem; }
+  .stats { flex-direction: column; gap: 1rem; }
+  .cert-card { flex-direction: row; align-items: center; gap: 1rem; }
+  .cert-icon-wrap { width: 60px; height: 60px; flex-shrink: 0; }
+  .talk { flex-direction: column; gap: 0.75rem; }
 }
 
 @media (hover: none) and (pointer: coarse) {
