@@ -1,5 +1,31 @@
 'use strict';
 
+/* Theme management */
+const themeSelect = document.getElementById('themeSelect');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+function initTheme() {
+  const saved = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+  applyTheme(saved);
+  themeSelect.value = saved;
+}
+
+function applyTheme(theme) {
+  document.body.classList.remove('theme-dark', 'theme-light', 'theme-colorblind');
+  if (theme.startsWith('colorblind-')) {
+    const baseTheme = theme.split('-')[1];
+    document.body.classList.add('theme-colorblind');
+    if (baseTheme === 'light') document.body.classList.add('theme-light');
+  } else {
+    if (theme === 'light') document.body.classList.add('theme-light');
+    else document.body.classList.add('theme-dark');
+  }
+  localStorage.setItem('theme', theme);
+}
+
+themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
+initTheme();
+
 const currentYear = new Date().getFullYear();
 document.getElementById('yr').textContent = currentYear;
 

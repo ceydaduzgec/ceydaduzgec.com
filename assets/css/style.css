@@ -28,6 +28,56 @@
   --t:         0.3s;
 }
 
+/* Light mode */
+body.theme-light {
+  --bg:        #f5f5f3;
+  --surface:   #efefec;
+  --card:      #e8e8e5;
+  --border:    #d5d5cf;
+  --border-hi: #c0c0b8;
+
+  --lime:      #7a8f00;
+  --lime-dim:  rgba(122,143,0,0.12);
+  --lime-glow: rgba(122,143,0,0.25);
+
+  --text:      #1a1918;
+  --muted:     #5a5652;
+  --dim:       #8a8680;
+}
+
+/* Color blind mode (improved contrast & accessible colors) */
+body.theme-colorblind {
+  --bg:        #0a0a0a;
+  --surface:   #1a1a1a;
+  --card:      #252525;
+  --border:    #3a3a3a;
+  --border-hi: #505050;
+
+  --lime:      #ffb81c;
+  --lime-dim:  rgba(255,184,28,0.1);
+  --lime-glow: rgba(255,184,28,0.25);
+
+  --text:      #ffffff;
+  --muted:     #d0d0d0;
+  --dim:       #a0a0a0;
+}
+
+body.theme-colorblind.theme-light {
+  --bg:        #ffffff;
+  --surface:   #f8f8f8;
+  --card:      #f0f0f0;
+  --border:    #d0d0d0;
+  --border-hi: #b0b0b0;
+
+  --lime:      #0173b2;
+  --lime-dim:  rgba(1,115,178,0.12);
+  --lime-glow: rgba(1,115,178,0.25);
+
+  --text:      #000000;
+  --muted:     #505050;
+  --dim:       #808080;
+}
+
 /* ─── Reset ─────────────────────────────────────────────── */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
@@ -151,6 +201,38 @@ button { font-family: var(--body); cursor: none; }
 }
 .nav-burger.open span:first-child { transform: rotate(45deg) translate(5px,5px); }
 .nav-burger.open span:last-child  { transform: rotate(-45deg) translate(5px,-5px); }
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-select {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color var(--t), background var(--t);
+}
+
+.theme-select:hover {
+  border-color: var(--lime);
+}
+
+.theme-select:focus {
+  outline: none;
+  border-color: var(--lime);
+}
+
+.theme-select option {
+  background: var(--card);
+  color: var(--text);
+}
 
 
 /* ─── Hero ───────────────────────────────────────────────── */
