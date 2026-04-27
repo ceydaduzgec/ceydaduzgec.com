@@ -191,8 +191,8 @@ button { font-family: var(--body); cursor: none; }
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 4rem;
+  grid-template-columns: 1fr 290px;
+  gap: 3rem;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -231,9 +231,11 @@ button { font-family: var(--body); cursor: none; }
   font-family: var(--font);
   font-size: clamp(4rem, 10vw, 9.5rem);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.05em;
   margin-bottom: 1.75rem;
+  transform: scaleX(0.82);
+  transform-origin: left center;
 }
 .rw { display: block; overflow: hidden; }
 .rt {
@@ -1161,7 +1163,8 @@ button { font-family: var(--body); cursor: none; }
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero-wrap        { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-right       { display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; }
+  .hero-right       { display: flex; flex-direction: row; align-items: flex-start; gap: 1.5rem; }
+  .photo-frame      { width: 180px; flex-shrink: 0; }
   .about-grid       { grid-template-columns: 1fr; gap: 3rem; }
   .skills-grid      { grid-template-columns: 1fr; }
   .sk-large { grid-column: span 1; }
@@ -1218,4 +1221,11 @@ button { font-family: var(--body); cursor: none; }
 @media (max-width: 480px) {
   .stats { flex-wrap: wrap; gap: 1.5rem; }
   .talk  { flex-direction: column; gap: 0.75rem; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  body   { cursor: auto; }
+  button { cursor: auto; }
+  a      { cursor: auto; }
+  .cur   { display: none !important; }
 }

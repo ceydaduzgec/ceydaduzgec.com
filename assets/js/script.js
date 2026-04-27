@@ -346,3 +346,18 @@ function buildBlogCard(post) {
 }
 
 loadBlog();
+
+
+/* ── Contact Form — mailto ─────────────────────────────── */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name    = this.querySelector('[name="name"]').value.trim();
+    const email   = this.querySelector('[name="email"]').value.trim();
+    const message = this.querySelector('[name="message"]').value.trim();
+    const subject = encodeURIComponent('Message from ' + name);
+    const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
+    window.location.href = 'mailto:cduzgec@gmail.com?subject=' + subject + '&body=' + body;
+  });
+}
