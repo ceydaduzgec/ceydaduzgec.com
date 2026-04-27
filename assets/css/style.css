@@ -211,31 +211,73 @@ body.theme-light .nav.scrolled {
   gap: 1rem;
 }
 
-.theme-select {
-  background: transparent;
+.theme-picker { position: relative; }
+
+.tp-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--card);
   border: 1px solid var(--border);
   color: var(--text);
   font-family: var(--mono);
   font-size: 0.75rem;
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem 0.65rem;
   border-radius: 5px;
-  cursor: pointer;
   transition: border-color var(--t), background var(--t);
+  white-space: nowrap;
 }
+.tp-btn:hover { border-color: var(--lime); }
 
-.theme-select:hover {
-  border-color: var(--lime);
+.tp-icon { color: var(--lime); font-size: 0.85rem; line-height: 1; }
+
+.tp-chevron {
+  color: var(--dim);
+  transition: transform var(--t);
+  flex-shrink: 0;
 }
+.theme-picker.open .tp-chevron { transform: rotate(180deg); }
 
-.theme-select:focus {
-  outline: none;
-  border-color: var(--lime);
-}
-
-.theme-select option {
+.tp-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
   background: var(--card);
-  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  list-style: none;
+  padding: 0.3rem;
+  min-width: 150px;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity var(--t), transform var(--t);
+  z-index: 300;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
+.theme-picker.open .tp-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.tp-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: background var(--t), color var(--t);
+  white-space: nowrap;
+  cursor: none;
+}
+.tp-opt:hover { background: var(--surface); color: var(--text); }
+.tp-opt.active { color: var(--lime); }
+.tp-opt::before { content: ''; display: inline-block; width: 0.7rem; font-size: 0.65rem; }
+.tp-opt.active::before { content: '✓'; }
 
 
 /* ─── Hero ───────────────────────────────────────────────── */

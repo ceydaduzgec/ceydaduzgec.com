@@ -69,12 +69,21 @@
         <a href="#contact" class="nlink nlink-cta">Contact</a>
       </nav>
       <div class="nav-controls">
-        <select id="themeSelect" class="theme-select" aria-label="Theme">
-          <option value="dark">Dark</option>
-          <option value="light">Light</option>
-          <option value="colorblind-dark">Color Blind Dark</option>
-          <option value="colorblind-light">Color Blind Light</option>
-        </select>
+        <div class="theme-picker" id="themePicker">
+          <button class="tp-btn" id="tpBtn" aria-haspopup="listbox" aria-label="Theme">
+            <span class="tp-icon">◐</span>
+            <span class="tp-label" id="tpLabel">Dark</span>
+            <svg class="tp-chevron" viewBox="0 0 10 6" width="10" height="6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 1l4 4 4-4"/>
+            </svg>
+          </button>
+          <ul class="tp-menu" id="tpMenu" role="listbox">
+            <li class="tp-opt" data-value="dark"            role="option">Dark</li>
+            <li class="tp-opt" data-value="light"           role="option">Light</li>
+            <li class="tp-opt" data-value="colorblind-dark" role="option">Color Blind Dark</li>
+            <li class="tp-opt" data-value="colorblind-light"role="option">Color Blind Light</li>
+          </ul>
+        </div>
       </div>
       <button class="nav-burger" id="burger" aria-label="Menu">
         <span></span><span></span>

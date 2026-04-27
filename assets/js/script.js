@@ -1,21 +1,13 @@
 'use strict';
 
 /* Theme management */
-const themeSelect = document.getElementById('themeSelect');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-function initTheme() {
-  const saved = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
-  applyTheme(saved);
-  themeSelect.value = saved;
-}
 
 function applyTheme(theme) {
   document.body.classList.remove('theme-dark', 'theme-light', 'theme-colorblind');
   if (theme.startsWith('colorblind-')) {
-    const baseTheme = theme.split('-')[1];
     document.body.classList.add('theme-colorblind');
-    if (baseTheme === 'light') document.body.classList.add('theme-light');
+    if (theme.endsWith('-light')) document.body.classList.add('theme-light');
   } else {
     if (theme === 'light') document.body.classList.add('theme-light');
     else document.body.classList.add('theme-dark');
@@ -23,7 +15,49 @@ function applyTheme(theme) {
   localStorage.setItem('theme', theme);
 }
 
-themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
+/* Custom theme picker */
+const themePicker = document.getElementById('themePicker');
+const tpBtn       = document.getElementById('tpBtn');
+const tpLabel     = document.getElementById('tpLabel');
+const tpMenu      = document.getElementById('tpMenu');
+
+const THEME_LABELS = {
+  'dark':              'Dark',
+  'light':             'Light',
+  'colorblind-dark':   'CB Dark',
+  'colorblind-light':  'CB Light',
+};
+
+function updatePicker(theme) {
+  tpLabel.textContent = THEME_LABELS[theme] || theme;
+  tpMenu.querySelectorAll('.tp-opt').forEach(o =>
+    o.classList.toggle('active', o.dataset.value === theme)
+  );
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+  applyTheme(saved);
+  updatePicker(saved);
+}
+
+tpBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  themePicker.classList.toggle('open');
+});
+
+document.addEventListener('click', () => themePicker.classList.remove('open'));
+
+tpMenu.querySelectorAll('.tp-opt').forEach(opt => {
+  opt.addEventListener('click', e => {
+    e.stopPropagation();
+    const val = opt.dataset.value;
+    applyTheme(val);
+    updatePicker(val);
+    themePicker.classList.remove('open');
+  });
+});
+
 initTheme();
 
 const currentYear = new Date().getFullYear();
@@ -43,7 +77,7 @@ document.addEventListener('mousemove', e => {
 });
 document.addEventListener('mouseleave', () => cur.classList.add('hidden'));
 
-document.querySelectorAll('a, button, [data-mag], .job, .blog-card').forEach(el => {
+document.querySelectorAll('a, button, [data-mag], .job, .blog-card, .tp-opt').forEach(el => {
   el.addEventListener('mouseenter', () => cur.classList.add('big'));
   el.addEventListener('mouseleave', () => cur.classList.remove('big'));
 });
