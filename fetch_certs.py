@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Credly'den sertifikaları çekip assets/data/certs.json dosyasına yazar.
-Kullanım: python fetch_certs.py
+Fetches certifications from Credly and writes them to assets/data/certs.json.
+Usage: python fetch_certs.py
 """
 
 import json
@@ -11,7 +11,7 @@ from pathlib import Path
 try:
     import requests
 except ImportError:
-    sys.exit("requests kütüphanesi gerekli: pip install requests")
+    sys.exit("requests library required: pip install requests")
 
 CREDLY_URL  = "https://www.credly.com/users/ceyda-duzgec.02/badges.json"
 OUTPUT_PATH = Path(__file__).parent / "assets" / "data" / "certs.json"
@@ -50,7 +50,7 @@ def fetch_certs() -> list[dict]:
 
 
 def main():
-    print("Credly'den sertifikalar çekiliyor…")
+    print("Fetching certifications from Credly…")
     try:
         certs = fetch_certs()
     except requests.RequestException as e:
@@ -58,7 +58,7 @@ def main():
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(certs, indent=2, ensure_ascii=False))
-    print(f"✓ {len(certs)} sertifika kaydedildi → {OUTPUT_PATH}")
+    print(f"✓ {len(certs)} certifications saved → {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":
