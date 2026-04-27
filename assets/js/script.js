@@ -111,29 +111,24 @@ function attachCursorHover(els) {
 }
 
 
-/* ── Certifications — Credly ───────────────────────────────
-   Credly blocks direct browser fetches (no CORS headers),
-   so we route through allorigins.win as a CORS proxy.
+/* ── Certifications — local JSON ───────────────────────────
+   fetch_certs.py çalıştırılarak assets/data/certs.json
+   güncellenir; sayfa buradan okur, Credly'e istek atmaz.
    ─────────────────────────────────────────────────────── */
 async function loadCerts() {
   const grid = document.getElementById('certsGrid');
   if (!grid) return;
 
-  const credlyUrl = 'https://www.credly.com/users/ceyda-duzgec.02/badges.json';
-  const proxyUrl  = `https://api.allorigins.win/raw?url=${encodeURIComponent(credlyUrl)}`;
-
   try {
-    const res  = await fetch(proxyUrl);
-    const data = await res.json();
+    const res   = await fetch('./assets/data/certs.json');
+    const certs = await res.json();
 
-    const badges = (data.data || []).filter(b => b.public && b.state === 'accepted');
-
-    if (!badges.length) {
+    if (!certs.length) {
       grid.innerHTML = '<div class="blog-empty">No certifications found.</div>';
       return;
     }
 
-    grid.innerHTML = badges.map(b => buildCertCard(b)).join('');
+    grid.innerHTML = certs.map(c => buildCertCard(c)).join('');
 
     grid.querySelectorAll('.cert-card').forEach(el => {
       el.classList.add('reveal-up');
@@ -142,32 +137,28 @@ async function loadCerts() {
     attachCursorHover(grid.querySelectorAll('.cert-card'));
 
     const el = document.getElementById('statCerts');
-    if (el) el.textContent = badges.length;
+    if (el) el.textContent = certs.length;
 
   } catch {
     grid.innerHTML = '<div class="blog-empty">Could not load certifications. <a href="https://www.credly.com/users/ceyda-duzgec.02/badges" target="_blank" rel="noopener" style="color:var(--lime)">View on Credly ↗</a></div>';
   }
 }
 
-function buildCertCard(badge) {
-  const name     = badge.badge_template?.name || '';
-  const issuer   = badge.issuer?.entities?.[0]?.entity?.name || '';
-  const imageUrl = badge.image_url || badge.badge_template?.image_url || '';
-  const badgeUrl = badge.badge_template?.url || 'https://www.credly.com/users/ceyda-duzgec.02/badges';
-  const date     = badge.issued_at_date
-    ? new Date(badge.issued_at_date).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
+function buildCertCard(cert) {
+  const date = cert.issued_at
+    ? new Date(cert.issued_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
     : '';
 
-  const imgHtml = imageUrl
-    ? `<img src="${escHtml(imageUrl)}" alt="${escHtml(name)}" loading="lazy">`
+  const imgHtml = cert.image_url
+    ? `<img src="${escHtml(cert.image_url)}" alt="${escHtml(cert.name)}" loading="lazy">`
     : '';
 
   return `
-    <a class="cert-card" href="${escHtml(badgeUrl)}" target="_blank" rel="noopener">
+    <a class="cert-card" href="${escHtml(cert.badge_url)}" target="_blank" rel="noopener">
       <div class="cert-icon-wrap">${imgHtml}</div>
       <div class="cert-body">
-        <span class="cert-issuer">${escHtml(issuer)}</span>
-        <h3 class="cert-title">${escHtml(name)}</h3>
+        <span class="cert-issuer">${escHtml(cert.issuer)}</span>
+        <h3 class="cert-title">${escHtml(cert.name)}</h3>
         <span class="cert-date">${escHtml(date)}</span>
       </div>
     </a>`;

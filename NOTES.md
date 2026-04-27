@@ -8,3 +8,4 @@ TODO:
 - Browser iconu sadece cd yap
 - send message bozuk
 - I'm a Cloud & Platform Engineer based in Istan -> Sol Arch olsun
+- Profıle foto fazla sağda

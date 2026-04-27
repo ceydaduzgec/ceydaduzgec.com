@@ -1,0 +1,72 @@
+[
+  {
+    "name": "CCNA: Switching, Routing, and Wireless Essentials",
+    "issuer": "Cisco",
+    "image_url": "https://images.credly.com/images/f4ccdba9-dd65-4349-baad-8f05df116443/CCNASRWE__1_.png",
+    "badge_url": "https://www.credly.com/org/cisco/badge/ccna-switching-routing-and-wireless-essentials.1",
+    "issued_at": "2026-03-30"
+  },
+  {
+    "name": "CCNA: Introduction to Networks",
+    "issuer": "Cisco",
+    "image_url": "https://images.credly.com/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png",
+    "badge_url": "https://www.credly.com/org/cisco/badge/ccna-introduction-to-networks",
+    "issued_at": "2026-02-10"
+  },
+  {
+    "name": "AWS Certified Solutions Architect – Associate",
+    "issuer": "Amazon Web Services Training and Certification",
+    "image_url": "https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png",
+    "badge_url": "https://www.credly.com/org/amazon-web-services/badge/aws-certified-solutions-architect-associate",
+    "issued_at": "2025-06-28"
+  },
+  {
+    "name": "AWS Certified AI Practitioner Early Adopter",
+    "issuer": "Amazon Web Services Training and Certification",
+    "image_url": "https://images.credly.com/images/834f2c8d-2d2c-4ce7-9580-02a351c31626/image.png",
+    "badge_url": "https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner-early-adopter",
+    "issued_at": "2024-11-22"
+  },
+  {
+    "name": "AWS Certified AI Practitioner",
+    "issuer": "Amazon Web Services Training and Certification",
+    "image_url": "https://images.credly.com/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png",
+    "badge_url": "https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner",
+    "issued_at": "2024-11-22"
+  },
+  {
+    "name": "AWS Certified Cloud Practitioner",
+    "issuer": "Amazon Web Services Training and Certification",
+    "image_url": "https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png",
+    "badge_url": "https://www.credly.com/org/amazon-web-services/badge/aws-certified-cloud-practitioner",
+    "issued_at": "2024-08-16"
+  },
+  {
+    "name": "HashiCorp Certified: Terraform Associate (003)",
+    "issuer": "HashiCorp",
+    "image_url": "https://images.credly.com/images/0dc62494-dc94-469a-83af-e35309f27356/blob",
+    "badge_url": "https://www.credly.com/org/hashicorp/badge/hashicorp-certified-terraform-associate-003",
+    "issued_at": "2024-09-19"
+  },
+  {
+    "name": "Well-Architected Proficient",
+    "issuer": "Amazon Web Services Training and Certification",
+    "image_url": "https://images.credly.com/images/b870667f-00a3-48d7-b988-9c02b441b883/image.png",
+    "badge_url": "https://www.credly.com/org/amazon-web-services/badge/well-architected-proficient",
+    "issued_at": "2024-04-26"
+  },
+  {
+    "name": "LFC101: Inclusive Speaker Orientation",
+    "issuer": "The Linux Foundation",
+    "image_url": "https://images.credly.com/images/16fbd343-192a-49ee-b9b9-de7bd1d4bf17/blob",
+    "badge_url": "https://www.credly.com/org/the-linux-foundation/badge/lfc101-inclusive-speaker-orientation",
+    "issued_at": "2025-07-08"
+  },
+  {
+    "name": "LFC102: Inclusive Open Source Community Orientation",
+    "issuer": "The Linux Foundation",
+    "image_url": "https://images.credly.com/images/4c923ac7-3490-4198-8ee6-fa9d3eb99b0d/blob",
+    "badge_url": "https://www.credly.com/org/the-linux-foundation/badge/lfc102-inclusive-open-source-community-orientation",
+    "issued_at": "2025-07-08"
+  }
+]
