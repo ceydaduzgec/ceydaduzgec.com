@@ -135,6 +135,9 @@ button { font-family: var(--body); cursor: none; }
   -webkit-backdrop-filter: blur(18px);
   border-bottom-color: var(--border);
 }
+body.theme-light .nav.scrolled {
+  background: rgba(245,245,243,0.92);
+}
 .nav-inner {
   max-width: var(--wrap);
   margin: 0 auto;
@@ -618,6 +621,8 @@ button { font-family: var(--body); cursor: none; }
 .job:last-child { border-bottom: none; }
 .job:hover { background: #1a1915; }
 
+body.theme-light .job:hover { background: #d5d5cf; }
+
 /* Logo */
 .job-logo-col { flex-shrink: 0; }
 .jlogo {
@@ -720,6 +725,8 @@ button { font-family: var(--body); cursor: none; }
 .edu-item:last-child { border-bottom: none; }
 .edu-item:hover { background: #1a1915; }
 
+body.theme-light .edu-item:hover { background: #d5d5cf; }
+
 .edu-logo-col { flex-shrink: 0; }
 .edu-logo {
   width: 42px; height: 42px;
@@ -773,8 +780,7 @@ button { font-family: var(--body); cursor: none; }
 /* ─── Skills Grid ────────────────────────────────────────── */
 .skills-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   border: 1px solid var(--border);
   border-radius: var(--r);
@@ -788,6 +794,8 @@ button { font-family: var(--body); cursor: none; }
   transition: background var(--t);
 }
 .sk-cell:hover { background: #1a1915; }
+
+body.theme-light .sk-cell:hover { background: #d5d5cf; }
 .sk-cell h3 {
   font-family: var(--font);
   font-size: 0.875rem;
@@ -795,8 +803,9 @@ button { font-family: var(--body); cursor: none; }
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
 }
-.sk-large { grid-column: span 2; }
+.sk-large { grid-column: span 1; }
 .sk-last  { border-bottom: none; }
+.sk-cell:nth-child(3) { border-bottom: none; }
 /* Override right border for last in row */
 .sk-cell:nth-child(2n) { border-right: none; }
 
@@ -846,6 +855,8 @@ button { font-family: var(--body); cursor: none; }
   color: inherit;
 }
 .cert-card:hover { background: #1a1915; }
+
+body.theme-light .cert-card:hover { background: #d5d5cf; }
 .cert-card:nth-child(2n) { border-right: none; }
 .cert-card:nth-child(n+3) { border-bottom: none; }
 
@@ -958,6 +969,7 @@ button { font-family: var(--body); cursor: none; }
 }
 .talk:last-child { border-bottom: none; }
 .talk:hover { background: #1a1915; }
+body.theme-light .talk:hover { background: #d5d5cf; }
 .talk:hover .talk-arrow { transform: translate(3px,-3px); color: var(--lime); }
 
 .talk-n {
@@ -1186,6 +1198,8 @@ button { font-family: var(--body); cursor: none; }
   border-bottom: 1px solid var(--border);
   word-break: break-word;
   overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
 }
 .contact-links a:hover { color: var(--lime); }
 
@@ -1194,6 +1208,11 @@ button { font-family: var(--body); cursor: none; }
   width: auto;
   vertical-align: middle;
   margin-right: 0.3em;
+  filter: invert(1);
+  flex-shrink: 0;
+}
+body.theme-light .link-icon {
+  filter: none;
 }
 
 .cform { display: flex; flex-direction: column; gap: 0.875rem; }
@@ -1256,6 +1275,7 @@ button { font-family: var(--body); cursor: none; }
   .skills-grid      { grid-template-columns: 1fr; }
   .sk-large { grid-column: span 1; }
   .sk-cell          { border-right: none; }
+  .sk-cell:nth-child(3) { border-bottom: 1px solid var(--border); }
   .contact-wrap     { grid-template-columns: 1fr; gap: 3rem; }
 }
 
