@@ -696,7 +696,7 @@ body.theme-light .nav.scrolled {
   transition: background var(--t);
 }
 .job:last-child { border-bottom: none; }
-.job:hover { background: #1a1915; }
+.job:hover { background: #252520; }
 
 body.theme-light .job:hover { background: #d5d5cf; }
 
@@ -804,7 +804,7 @@ body.theme-light .job:hover { background: #d5d5cf; }
   transition: background var(--t);
 }
 .edu-item:last-child { border-bottom: none; }
-.edu-item:hover { background: #1a1915; }
+.edu-item:hover { background: #252520; }
 
 body.theme-light .edu-item:hover { background: #d5d5cf; }
 
@@ -874,7 +874,7 @@ body.theme-light .edu-item:hover { background: #d5d5cf; }
   border-bottom: 1px solid var(--border);
   transition: background var(--t);
 }
-.sk-cell:hover { background: #1a1915; }
+.sk-cell:hover { background: #252520; }
 
 body.theme-light .sk-cell:hover { background: #d5d5cf; }
 .sk-cell h3 {
@@ -935,7 +935,7 @@ body.theme-light .sk-cell:hover { background: #d5d5cf; }
   text-decoration: none;
   color: inherit;
 }
-.cert-card:hover { background: #1a1915; }
+.cert-card:hover { background: #252520; }
 
 body.theme-light .cert-card:hover { background: #d5d5cf; }
 .cert-card:nth-child(2n) { border-right: none; }
@@ -1049,7 +1049,7 @@ body.theme-light .cert-card:hover { background: #d5d5cf; }
   color: inherit;
 }
 .talk:last-child { border-bottom: none; }
-.talk:hover { background: #1a1915; }
+.talk:hover { background: #252520; }
 body.theme-light .talk:hover { background: #d5d5cf; }
 .talk:hover .talk-arrow { transform: translate(3px,-3px); color: var(--lime); }
 
@@ -1162,7 +1162,7 @@ body.theme-light .talk:hover { background: #d5d5cf; }
 }
 .blog-card:last-child { border-right: none; }
 .blog-card:nth-child(3n) { border-right: none; }
-.blog-card:hover { background: #1a1915; }
+.blog-card:hover { background: #252520; }
 .blog-card:hover .bc-title { color: var(--lime); }
 
 .bc-thumb {
