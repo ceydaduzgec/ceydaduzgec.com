@@ -711,7 +711,6 @@ body.theme-light .job:hover { background: #d5d5cf; }
   border: 1px solid var(--border);
   border-radius: var(--r);
   overflow: hidden;
-  margin-top: 2.5rem;
 }
 .edu-item {
   display: flex;
