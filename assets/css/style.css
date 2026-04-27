@@ -671,6 +671,11 @@ body.theme-light .job:hover { background: #d5d5cf; }
   margin-top: 0.1rem;
   font-weight: 500;
 }
+.job-co a {
+  color: inherit;
+  transition: opacity var(--t);
+}
+.job-co a:hover { opacity: 0.75; text-decoration: underline; }
 .job-meta { text-align: right; flex-shrink: 0; }
 .job-date {
   font-family: var(--mono);
