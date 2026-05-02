@@ -99,7 +99,7 @@ let secOffsets = [];
 function updateSecOffsets() {
   secOffsets = [...secs].map(s => s.offsetTop);
 }
-updateSecOffsets();
+requestAnimationFrame(updateSecOffsets);
 window.addEventListener('resize', updateSecOffsets, { passive: true });
 
 window.addEventListener('scroll', () => {
@@ -122,14 +122,12 @@ navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 
 
 /* ── Hero Text Reveal ──────────────────────────────────── */
-window.addEventListener('load', () => {
-  const delays = [0, 130, 280, 400, 520];
-  document.querySelectorAll('.rt').forEach((el, i) => {
-    setTimeout(() => el.classList.add('in'), delays[i] ?? i * 130);
-  });
-  document.querySelectorAll('.rt-sm').forEach((el, i) => {
-    setTimeout(() => el.classList.add('in'), 320 + i * 100);
-  });
+const delays = [0, 130, 280, 400, 520];
+document.querySelectorAll('.rt').forEach((el, i) => {
+  setTimeout(() => el.classList.add('in'), delays[i] ?? i * 130);
+});
+document.querySelectorAll('.rt-sm').forEach((el, i) => {
+  setTimeout(() => el.classList.add('in'), 320 + i * 100);
 });
 
 
