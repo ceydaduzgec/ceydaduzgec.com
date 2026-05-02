@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 – Ceyda Duzgec</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap"></noscript>
+  <style>
+    .not-found {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+    .not-found-code {
+      font-family: var(--font-mono);
+      font-size: clamp(5rem, 20vw, 10rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--lime);
+      letter-spacing: -0.04em;
+    }
+    .not-found-msg {
+      font-size: 1.25rem;
+      color: var(--text-2);
+      max-width: 28ch;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span>cd</span><span class="nl-tilde">~</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="not-found">
+    <div class="not-found-code">404</div>
+    <p class="not-found-msg">This page doesn't exist.</p>
+    <a href="/" class="btn-lime">Go home</a>
+  </main>
+
+</body>
+</html>
