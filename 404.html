@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <style>
     .not-found {
       min-height: 100svh;
@@ -20,24 +20,49 @@
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
     .not-found-code {
       font-family: var(--font-mono);
-      font-size: clamp(5rem, 20vw, 10rem);
+      font-size: clamp(5rem, 20vw, 9rem);
       font-weight: 700;
       line-height: 1;
       color: var(--lime);
       letter-spacing: -0.04em;
     }
-    .not-found-msg {
-      font-size: 1.25rem;
+    .not-found-terminal {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-align: left;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.25rem 1.5rem;
+      max-width: 480px;
+      width: 100%;
+      line-height: 1.8;
       color: var(--text-2);
-      max-width: 28ch;
+    }
+    .not-found-terminal .t-cmd  { color: var(--lime); }
+    .not-found-terminal .t-err  { color: #f87171; }
+    .not-found-terminal .t-dim  { opacity: 0.45; }
+    .not-found-terminal .t-blink {
+      display: inline-block;
+      width: 0.55em; height: 1.1em;
+      background: var(--lime);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .not-found-msg {
+      font-size: 1rem;
+      color: var(--text-2);
     }
   </style>
 </head>
 <body>
+
+  <div class="cur" id="cur" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
     <div class="nav-inner">
@@ -49,9 +74,53 @@
 
   <main class="not-found">
     <div class="not-found-code">404</div>
-    <p class="not-found-msg">This page doesn't exist.</p>
-    <a href="/" class="btn-lime">Go home</a>
+
+    <div class="not-found-terminal" aria-label="Terminal error output">
+      <div><span class="t-cmd">$ terraform state show</span> <span id="tpath" class="t-dim">ceydaduzgec.com/...</span></div>
+      <div class="t-err">╷</div>
+      <div class="t-err">│ Error: No state found for this resource.</div>
+      <div class="t-err">│ This page has been deprovisioned.</div>
+      <div class="t-err">│ No rollback available.</div>
+      <div class="t-err">╵</div>
+      <div><span class="t-dim">Exit code 1 &nbsp;·&nbsp; Duration: 0ms &nbsp;·&nbsp;</span><span class="t-blink"></span></div>
+    </div>
+
+    <p class="not-found-msg">Wrong URL or the page never existed.</p>
+    <a href="/" class="btn-lime">terraform apply /</a>
   </main>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      const body = document.body;
+      body.classList.remove('theme-dark', 'theme-light', 'theme-colorblind');
+      if (theme.startsWith('colorblind-')) {
+        body.classList.add('theme-colorblind');
+        if (theme.endsWith('-light')) body.classList.add('theme-light');
+      } else {
+        body.classList.add(theme === 'light' ? 'theme-light' : 'theme-dark');
+      }
+
+      const cur = document.getElementById('cur');
+      document.addEventListener('mousemove', e => {
+        cur.style.left = e.clientX + 'px';
+        cur.style.top  = e.clientY + 'px';
+        cur.classList.remove('hidden');
+      });
+      document.addEventListener('mouseleave', () => cur.classList.add('hidden'));
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('big'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+      });
+
+      const path = window.location.pathname;
+      if (path && path !== '/') {
+        document.getElementById('tpath').textContent = 'ceydaduzgec.com' + path;
+      }
+    })();
+  </script>
 
 </body>
 </html>
