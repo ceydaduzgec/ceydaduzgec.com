@@ -43,10 +43,12 @@
 
   <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <link rel="preload" as="image" href="./assets/images/profile.webp" type="image/webp">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 </head>
 <body>
 
@@ -120,7 +122,10 @@
 
       <div class="hero-right">
         <div class="photo-frame">
-          <img src="./assets/images/profile.png" alt="Ceyda Duzgec">
+          <picture>
+            <source srcset="./assets/images/profile.webp" type="image/webp">
+            <img src="./assets/images/profile.png" alt="Ceyda Duzgec" width="600" height="600" loading="eager" fetchpriority="high">
+          </picture>
           <div class="photo-deco"></div>
         </div>
         <ul class="hero-contact-list">
@@ -255,7 +260,7 @@
         <div class="job reveal-up">
           <div class="job-logo-col">
             <div class="jlogo">
-              <img src="./assets/images/cocacolaicecek.jpeg" alt="CCI"
+              <img src="./assets/images/cocacolaicecek.jpeg" alt="CCI" width="44" height="44" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="jlogo-init">CCI</span>
             </div>
@@ -285,7 +290,7 @@
         <div class="job reveal-up">
           <div class="job-logo-col">
             <div class="jlogo">
-              <img src="./assets/images/sufle.jpeg" alt="Sufle"
+              <img src="./assets/images/sufle.jpeg" alt="Sufle" width="44" height="44" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="jlogo-init">SFL</span>
             </div>
@@ -318,7 +323,7 @@
         <div class="job reveal-up">
           <div class="job-logo-col">
             <div class="jlogo">
-              <img src="./assets/images/pera.jpeg" alt="Hipo"
+              <img src="./assets/images/pera.jpeg" alt="Hipo" width="44" height="44" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="jlogo-init">HİPO</span>
             </div>
@@ -350,7 +355,7 @@
         <div class="job reveal-up">
           <div class="job-logo-col">
             <div class="jlogo">
-              <img src="./assets/images/yorenet.jpeg" alt="Yorenet"
+              <img src="./assets/images/yorenet.jpeg" alt="Yorenet" width="44" height="44" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="jlogo-init">YRN</span>
             </div>
@@ -394,7 +399,7 @@
         <div class="edu-item reveal-up">
           <div class="edu-logo-col">
             <div class="edu-logo">
-              <img src="./assets/images/bogazici.jpeg" alt="Bogazici"
+              <img src="./assets/images/bogazici.jpeg" alt="Bogazici" width="42" height="42" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="edu-logo-init">BÜ</span>
             </div>
@@ -411,7 +416,7 @@
         <div class="edu-item reveal-up">
           <div class="edu-logo-col">
             <div class="edu-logo">
-              <img src="./assets/images/darmstadt.jpeg" alt="TU Darmstadt"
+              <img src="./assets/images/darmstadt.jpeg" alt="TU Darmstadt" width="42" height="42" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="edu-logo-init">TUD</span>
             </div>
@@ -428,7 +433,7 @@
         <div class="edu-item reveal-up">
           <div class="edu-logo-col">
             <div class="edu-logo">
-              <img src="./assets/images/sabanci.jpeg" alt="Sabanci"
+              <img src="./assets/images/sabanci.jpeg" alt="Sabanci" width="42" height="42" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
               <span class="edu-logo-init">SÜ</span>
             </div>
@@ -566,7 +571,7 @@
           </p>
           <div class="contact-links reveal-up">
             <a href="https://www.linkedin.com/in/ceydaduzgec/" target="_blank" rel="noopener" aria-label="LinkedIn - ceydaduzgec">in ceydaduzgec</a>
-            <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener"><img src="./assets/images/github.svg" alt="" class="link-icon"> ceydaduzgec</a>
+            <a href="https://github.com/ceydaduzgec" target="_blank" rel="noopener"><img src="./assets/images/github.svg" alt="" class="link-icon" width="16" height="16"> ceydaduzgec</a>
             <a href="mailto:cduzgec@gmail.com"><span aria-hidden="true">✉</span> cduzgec@gmail.com</a>
           </div>
         </div>
