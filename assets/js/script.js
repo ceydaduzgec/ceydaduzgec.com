@@ -95,10 +95,17 @@ const burger  = document.getElementById('burger');
 const nlinks  = document.querySelectorAll('.nlink');
 const secs    = document.querySelectorAll('section[id]');
 
+let secOffsets = [];
+function updateSecOffsets() {
+  secOffsets = [...secs].map(s => s.offsetTop);
+}
+updateSecOffsets();
+window.addEventListener('resize', updateSecOffsets, { passive: true });
+
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 30);
   let active = '';
-  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) active = s.id; });
+  secOffsets.forEach((top, i) => { if (window.scrollY >= top - 120) active = secs[i].id; });
   nlinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${active}`));
 }, { passive: true });
 
