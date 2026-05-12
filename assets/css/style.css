@@ -1066,10 +1066,14 @@ body.theme-light .talk:hover { background: #d5d5cf; }
 }
 .talk:hover .talk-n { color: var(--dim); }
 
-.talk-body { flex: 1; }
+.talk-body { flex: 1; min-width: 0; }
 .talk-top {
-  display: flex; align-items: center; gap: 0.75rem;
-  flex-wrap: wrap; margin-bottom: 0.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem;
+}
+.talk-meta {
+  display: flex; align-items: center; gap: 0.5rem;
+  flex-shrink: 0;
 }
 .talk-ev {
   font-size: 0.76rem;
@@ -1079,6 +1083,12 @@ body.theme-light .talk:hover { background: #d5d5cf; }
   border: 1px solid rgba(200,255,0,0.15);
   border-radius: 20px;
   padding: 0.16rem 0.65rem;
+  font-family: var(--font);
+}
+.talk-city {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--muted);
   font-family: var(--font);
 }
 .talk-yr {

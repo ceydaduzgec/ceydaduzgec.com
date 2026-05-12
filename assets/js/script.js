@@ -296,7 +296,6 @@ async function loadTalks() {
 }
 
 function parseTalks(md) {
-  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const talks  = [];
   const lines  = md.split('\n');
   let year     = null;
@@ -308,12 +307,12 @@ function parseTalks(md) {
     if (yearM) { year = yearM[1]; continue; }
     if (!year) continue;
 
-    /* - ### DD.MM: Event Name */
-    const evM = line.match(/^-\s+###\s+(\d{2})\.(\d{2}):\s+(.+)/);
+    /* - ### DD MonthName: Event Name */
+    const evM = line.match(/^-\s+###\s+\d{2}\s+(\w+):\s+(.+)/);
     if (!evM) continue;
 
-    const [, , month, event] = evM;
-    const dateStr = `${MONTHS[parseInt(month, 10) - 1]} ${year}`;
+    const [, monthName, event] = evM;
+    const dateStr = `${monthName.slice(0, 3)} ${year}`;
 
     /* **Talk:** *Title* */
     const titleLine = (lines[i + 1] || '').trim();
@@ -321,8 +320,10 @@ function parseTalks(md) {
     const title     = titleM ? titleM[1] : '';
     if (titleM) i++;
 
-    /* **Resources:** [Label](url) | ... */
-    const resLine = (lines[i + 1] || '').trim();
+    /* **Resources:** [Label](url) | ... (may be separated by a blank line) */
+    let nextIdx = i + 1;
+    while (nextIdx < lines.length && lines[nextIdx].trim() === '') nextIdx++;
+    const resLine = (lines[nextIdx] || '').trim();
     const links   = [];
     if (resLine.startsWith('**Resources:**')) {
       const re = /\[([^\]]+)\]\(([^)]+)\)/g;
@@ -330,10 +331,13 @@ function parseTalks(md) {
       while ((m = re.exec(resLine)) !== null) {
         if (m[1] !== 'Code') links.push({ label: m[1], url: m[2] });
       }
-      i++;
+      i = nextIdx;
     }
 
-    talks.push({ event, title, dateStr, links });
+    const sep   = event.lastIndexOf(' - ');
+    const name  = sep !== -1 ? event.slice(0, sep) : event;
+    const city  = sep !== -1 ? event.slice(sep + 3) : '';
+    talks.push({ name, city, title, dateStr, links });
   }
 
   return talks;
@@ -352,8 +356,11 @@ function buildTalkCard(talk, num) {
       <span class="talk-n">${n}</span>
       <div class="talk-body">
         <div class="talk-top">
-          <span class="talk-ev">${escHtml(talk.event)}</span>
-          <span class="talk-yr">${escHtml(talk.dateStr)}</span>
+          <span class="talk-ev">${escHtml(talk.name)}</span>
+          <span class="talk-meta">
+            ${talk.city ? `<span class="talk-city">${escHtml(talk.city)}</span>` : ''}
+            <span class="talk-yr">${escHtml(talk.dateStr)}</span>
+          </span>
         </div>
         <h3>${escHtml(talk.title)}</h3>
         ${linksHtml}
