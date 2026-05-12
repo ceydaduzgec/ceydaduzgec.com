@@ -36,7 +36,7 @@ function updatePicker(theme) {
 }
 
 function initTheme() {
-  const saved = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+  const saved = localStorage.getItem('theme') || 'dark';
   applyTheme(saved);
   updatePicker(saved);
 }
