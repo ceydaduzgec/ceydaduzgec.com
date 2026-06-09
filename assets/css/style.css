@@ -762,6 +762,13 @@ body.theme-light .job:hover { background: #d5d5cf; }
 }
 .job-loc { font-size: 0.75rem; color: var(--dim); margin-top: 0.1rem; display: block; }
 
+.job-about {
+  font-size: 0.8rem;
+  color: var(--dim);
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
 .job-bullets { margin-bottom: 0.875rem; }
 .job-bullets li {
   font-size: 0.85rem;
